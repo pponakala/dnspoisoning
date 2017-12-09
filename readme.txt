@@ -1,3 +1,15 @@
+OS: Ubuntu 14.04.5 LTS 
+Language: Python 2.7.6
+
+files:
+dnsdetect.py
+dnsinject.py
+readme.txt
+tracefile.pcap
+detection output for attached tracefile.pcap
+
+General design:
+----------------
 spoofing and inject:
 	modifying rdata field of packet in spoofed packet
 	all other fields are the same
@@ -7,7 +19,7 @@ spoofing and inject:
 		-> however this method would prevent us from detecting spoofed packets in our dnsdetect, hence the simple method is used
 
 detect:
-	check if all fields match, including TXID to avoid false positives, like with legitimate consecutive responses with different IP addresses for same hostname
+	check if all relevant fields match -- including same dst IP, same ports for dst and src, dns id and qname --  to avoid false positives, like with legitimate consecutive responses with different IP addresses for same hostname which occur with dns round robin scheduling for example (so we check IP addresses as well)
 	cases where this may not work:
 		two dns packets all have same fields, including TXID, yet are not spoofed and are both not poisonous
 		occurs when in a NAT and due to various other reasons mentioned by Prof. in piazza
@@ -41,7 +53,7 @@ expression:
 dns packet types:
 	only dns A requests are forged and injected
 
-testing:
+testing, compilation and commands:
 dnsinject:
 	all possible combinations for cmdline args
 	python dnsinject.py 
