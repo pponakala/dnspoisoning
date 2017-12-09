@@ -2,8 +2,6 @@ import argparse
 from scapy.all import *
 import collections
 
-#prev_packets = deque(maxlen = len)
-
 def print_poisoning_details(prev_packet, pkt):
 	print ""
 	print "DNS poisoning attempt"
@@ -14,7 +12,6 @@ def print_poisoning_details(prev_packet, pkt):
 def check_duplicate_responses(pkt):
 	print "checking duplicate packets"
 	for prev_packet in prev_packets:
-		'''
 		if prev_packet[IP].dst != pkt[IP].dst or\
 		prev_packet[IP].sport != pkt[IP].sport or\
 		prev_packet[IP].dport != pkt[IP].dport:
@@ -23,8 +20,6 @@ def check_duplicate_responses(pkt):
 		prev_packet[DNS].qd.qname == pkt[DNS].qd.qname and\
 		prev_packet[DNSRR].rdata != pkt[DNSRR].rdata:
 			print_poisoning_details(prev_packet, pkt)
-	'''
-		print_poisoning_details(prev_packet, pkt) #remove this line
 	return
 
 def arg_parser():
@@ -57,13 +52,8 @@ if __name__ == '__main__':
 	expression = args.expression
 	bpf_filter = expression + space + dst_port_filter
 	length = 100 #arbitrary
-	#global prev_packets
 	prev_packets = deque(maxlen = length)
-	
-	print interface
-	print tracefile
-	print bpf_filter
-	print expression
+
 	if interface is not None and tracefile is not None:
 		print "Expected: either interface or tracefile. Got: both arguments"
 	elif interface is not None:
