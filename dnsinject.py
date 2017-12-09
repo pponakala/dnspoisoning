@@ -1,7 +1,5 @@
 from scapy.all import *
 import argparse
-import logging
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 import socket
 import netifaces
 
