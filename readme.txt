@@ -64,3 +64,13 @@ dnsdetect:
 final test:
 	victim guest VM
 	another guest VM runs dnsinject and dnsdetect and observes victim's traffic
+	
+references:
+- http://www.cs.dartmouth.edu/~sergey/netreads/local/reliable-dns-spoofing-with-python-scapy-nfqueue.html
+- http://www.secdev.org/conf/scapy_lsm2003.pdf
+- http://scapy.readthedocs.io/en/latest/functions.html
+- https://pypi.python.org/pypi/netifaces
+- https://stackoverflow.com/questions/3277503/how-do-i-read-a-file-line-by-line-into-a-list
+- http://securitynik.blogspot.com/2014/05/building-your-own-tools-with-scapy.html
+- https://stackoverflow.com/questions/166506/finding-local-ip-addresses-using-pythons-stdlib
+- https://stackoverflow.com/questions/19124304/what-does-metavar-and-action-mean-in-argparse-in-python
