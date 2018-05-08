@@ -76,7 +76,7 @@ present:
 #### dns packet types:
 	only dns A requests are forged and injected
 
-### Testing, compilation and commands:
+### Testing, compilation, and commands:
 
 #### dnsinject:
 	all possible combinations for cmdline args
